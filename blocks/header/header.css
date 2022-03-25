@@ -1,0 +1,15 @@
+.header {
+  width: 92.5%;
+  display: flex;
+  position: relative;
+  flex-flow: row;
+  padding-top: 28px;
+  margin: 0 auto;
+  justify-content: flex-end;
+  align-content: center;
+
+}
+
+.header:first-child {
+  justify-self: flex-start;
+}
