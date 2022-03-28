@@ -1,3 +1,8 @@
 .element__title {
-background-color:  #FFFFFF;
+  background-color: #FFFFFF;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  padding-top: 0;
+  margin-top: -3px;
 }
