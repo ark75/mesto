@@ -13,17 +13,20 @@
   </header>
   <main>
     <section class="profile">
-      <img class="profile__image" src="./images/profile-image.jpg" alt="Аватар">
-      <h1 class="profile__title">Жак-Ив Кусто</h1>
-      <p class="profile__subtitle">Исследователь океана</p>
+      <div class="profile__image"></div>
+      <div class="profile_content">
+        <h1 class="profile__title">Жак-Ив Кусто <img class="profile__edit-button" src="images/edit-button.svg" alt="Редактировать"></h1>
+        <p class="profile__subtitle">Исследователь океана</p>
+      </div>
+      <div class="profile__add-button"></div>
     </section>
-    <section>
+    <section class="photo-gallery">
       <ul class="elements">
         <li class="element">
           <img class="element__image" src="images/karachaevsk.jpg" alt="Карачаевск">
           <div class="element__title">
-            <p class="element__text">Карачаевск       <img class="element__fav-icon" src="images/fav-icon.svg" alt="Избранное"></p>
-
+            <p class="element__text">Карачаевск</p>
+            <img class="element__fav-icon" src="images/fav-icon.svg" alt="Избранное">
           </div>
         </li>
         <li class="element">
@@ -65,24 +68,7 @@
     </section>
   </main>
   <footer class="footer">
-    <nav>
-      <ul class="footer__links">
-        <li class="footer__links footer__links_element"><a href="https://yandex.ru/maps" target="_blank"
-                                                           class="footer__link">Карты</a></li>
-        <li class="footer__links footer__links_element"><a href="https://yandex.ru/pogoda" target="_blank"
-                                                           class="footer__link">Погода</a></li>
-        <li class="footer__links footer__links_element"><a href="https://rasp.yandex.ru" target="_blank"
-                                                           class="footer__link">Расписание</a>
-        </li>
-        <li class="footer__links footer__links_element"><a href="https://calendar.yandex.ru" target="_blank"
-                                                           class="footer__link">Календарь</a>
-        </li>
-        <li class="footer__links footer__links_element"><a href="https://travel.yandex.ru" target="_blank"
-                                                           class="footer__link">Путешествия</a>
-        </li>
-      </ul>
-    </nav>
-    <p class="footer__copyright">&copy; 2020. Аркадий Пак</p>
+    <p class="footer__text">&copy; 2020 Mesto Russia</p>
   </footer>
 </div>
 </body>

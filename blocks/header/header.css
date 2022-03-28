@@ -1,15 +1,13 @@
 .header {
-  width: 92.5%;
-  display: flex;
-  position: relative;
-  flex-flow: row;
-  padding-top: 28px;
-  margin: 0 auto;
-  justify-content: flex-end;
-  align-content: center;
+  max-width: 68.75%;
+   margin: 45px auto 0;
+  border: 1px none rgba(84, 84, 84, 0.7);
+  border-bottom-style: solid;
+  }
 
-}
 
-.header:first-child {
-  justify-self: flex-start;
+@media screen  and (max-width: 949px) {
+  .header {
+    max-width: 88.13%;
+  }
 }
