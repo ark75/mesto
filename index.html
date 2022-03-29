@@ -12,10 +12,28 @@
     <img class="header__logo" src="./images/logo.svg" alt="Лого МЕСТО">
   </header>
   <main>
+    <form class="popup">
+      <div class="popup__close-button"></div>
+      <div class="popup__form">
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <fieldset class="popup__input-container ">
+          <label for="name" class="popup__label"></label>
+          <input type="text" class="popup__item" id="name" name="name"
+                 placeholder="Ваше имя ?" required>
+          <label for="description" class="popup__label"></label>
+          <input type="text" class="popup__item" id="description" name="description"
+                 placeholder="Опишите себя..." required>
+        </fieldset>
+        <fieldset class="popup__handlers">
+          <input type="submit" value="Сохранить" class="popup__button">
+        </fieldset>
+      </div>
+    </form>
     <section class="profile">
       <div class="profile__image"></div>
       <div class="profile_content">
-        <h1 class="profile__title">Жак-Ив Кусто <img class="profile__edit-button" src="images/edit-button.svg" alt="Редактировать"></h1>
+        <h1 class="profile__title">Жак-Ив Кусто <img class="profile__edit-button" src="images/edit-button.svg"
+                                                     alt="Редактировать"></h1>
         <p class="profile__subtitle">Исследователь океана</p>
       </div>
       <div class="profile__add-button"></div>
