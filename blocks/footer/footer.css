@@ -1,35 +1,19 @@
 .footer {
-  width: 92.5%;
-  list-style-type: none;
-  display: flex;
-  position: relative;
-  flex-flow: row;
-  flex-wrap: wrap;
-  padding-top: 92px;
-  padding-bottom: 24px;
-  margin: 0 auto 0 48px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  color: #545454;
+  max-width: 68.75%;
+  margin: 0 auto;
+  padding-top: 67px;
 }
 
-
-@media screen  and (max-width: 320px) {
+@media screen  and (max-width: 949px) {
   .footer {
-    padding-top: 64px;
-    margin: 0 0 0 16px;
-    width: 58.12%;
+    padding-top: 48px;
+    margin-bottom: 36px;
+    max-width: 88.13%;
   }
 }
 
-@media screen  and (max-width: 767px) and (min-width: 321px) {
-  .footer {
-    padding-top: 88px;
-    margin-left: 24px;
-    width: 93.75%;
-    flex-flow: column;
-  }
-}
-
-@media screen  and (max-width: 1120px) and (min-width: 768px) {
-  .footer {
-    width: 90.63%;
-  }
-}
