@@ -12,7 +12,7 @@
 
 **Ссылка на проект**
 
-* [Ссылка на проект на GH-Pages ](https://ark75.github.io/russian-travel/)
+* [Ссылка на проект на GH-Pages ](https://ark75.github.io/mesto/)
 
 Планы по доработке проекта:
 
