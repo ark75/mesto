@@ -16,9 +16,4 @@
 
   }
 }
-@media screen  and (max-width: 1279px) and (min-width: 949px) {
-  .elements {
-    grid-template-columns:repeat(auto-fill, minmax(min(2828px, 100%), 1fr));
 
-  }
-}

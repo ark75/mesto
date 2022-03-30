@@ -4,3 +4,7 @@
   width: 22px;
   height: 19px;
 }
+
+.element__fav-icon:hover {
+ opacity: 0.5;
+}

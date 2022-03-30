@@ -10,7 +10,7 @@
 }
 
 @media screen  and (max-width: 949px) {
-.profile {
+  .profile {
     max-width: 88.13%;
   }
 }
