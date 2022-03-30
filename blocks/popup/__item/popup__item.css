@@ -1,6 +1,6 @@
 .popup__item {
   width: 100%;
-  height: content-box;
+  /*height: content-box;*/
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -12,8 +12,8 @@
   border-bottom: 1px solid #bcbcc4;
   background-color: transparent;
   font-family: inherit;
-  padding: 13px 0 13px;
-  text-overflow: ellipsis;
+    text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  padding: 0 0 13px;
 }
