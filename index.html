@@ -19,10 +19,10 @@
         <fieldset class="popup__input-container ">
           <label for="name" class="popup__label"></label>
           <input type="text" class="popup__item" id="name" name="name"
-                 placeholder="Ваше имя ?" required>
+                 placeholder="Имя" required>
           <label for="description" class="popup__label"></label>
           <input type="text" class="popup__item" id="description" name="description"
-                 placeholder="Опишите себя..." required>
+                 placeholder="О себе" required>
         </fieldset>
         <fieldset class="popup__handlers">
           <input type="submit" value="Сохранить" class="popup__button">
@@ -32,8 +32,9 @@
     <section class="profile">
       <div class="profile__image"></div>
       <div class="profile_content">
-        <h1 class="profile__title">Жак-Ив Кусто <img class="profile__edit-button" src="images/edit-button.svg"
-                                                     alt="Редактировать"></h1>
+        <div class="profile__info">
+          <h1 class="profile__title">Жак-Ив Кусто</h1>
+          <img class="profile__edit-button" src="images/edit-button.svg" alt="Редактировать"></div>
         <p class="profile__subtitle">Исследователь океана</p>
       </div>
       <div class="profile__add-button"></div>
@@ -44,7 +45,7 @@
           <img class="element__image" src="images/karachaevsk.jpg" alt="Карачаевск">
           <div class="element__title">
             <p class="element__text">Карачаевск</p>
-            <img class="element__fav-icon" src="images/fav-icon.svg" alt="Избранное">
+            <div class="element__fav-icon element__fav-icon_disabled"></div>
           </div>
         </li>
         <li class="element">
