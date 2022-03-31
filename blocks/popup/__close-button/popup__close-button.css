@@ -11,7 +11,6 @@
   border: none;
   box-sizing: border-box;
   z-index: 100;
-  opacity:1.0;
 }
 
 .popup__close-button:hover {
