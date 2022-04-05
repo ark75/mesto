@@ -12,23 +12,6 @@
     <img class="header__logo" src="./images/logo.svg" alt="Лого МЕСТО">
   </header>
   <main>
-    <form class="popup">
-      <button class="popup__close-button" type="button"></button>
-      <div class="popup__container">
-        <h2 class="popup__title">Редактировать профиль</h2>
-        <fieldset class="popup__input-container ">
-          <label for="name" class="popup__label"></label>
-          <input type="text" class="popup__item" id="name" name="name"
-                 placeholder="Имя" required>
-          <label for="description" class="popup__label"></label>
-          <input type="text" class="popup__item" id="description" name="description"
-                 placeholder="О себе" required>
-        </fieldset>
-        <fieldset class="popup__handlers">
-          <input type="submit" value="Сохранить" class="popup__button">
-        </fieldset>
-      </div>
-    </form>
     <section class="profile">
       <div class="profile__image"></div>
       <div class="profile__content">
@@ -46,42 +29,42 @@
           <img class="element__image" src="images/karachaevsk.jpg" alt="Карачаевск">
           <div class="element__title">
             <p class="element__text">Карачаевск</p>
-            <div class="element__fav-icon element__fav-icon_disabled"></div>
+            <button class="element__like-icon element__like-icon_disabled" type="button"></button>
           </div>
         </li>
         <li class="element">
           <img class="element__image" src="images/Elbrus.jpg" alt="Эльбрус">
           <div class="element__title">
             <p class="element__text">Гора Эльбрус</p>
-            <img class="element__fav-icon" src="images/fav-icon.svg" alt="Избранное">
+            <button class="element__like-icon element__like-icon_disabled" type="button"></button>
           </div>
         </li>
         <li class="element">
           <img class="element__image" src="images/dombay.jpg" alt="Домбай">
           <div class="element__title">
             <p class="element__text">Домбай</p>
-            <img class="element__fav-icon" src="images/fav-icon.svg" alt="Избранное">
+            <button class="element__like-icon element__like-icon_disabled" type="button"></button>
           </div>
         </li>
         <li class="element">
           <img class="element__image" src="images/elbrus-2.jpg" alt="Эльбрус 2">
           <div class="element__title">
             <p class="element__text">Гора Эльбрус</p>
-            <img class="element__fav-icon" src="images/fav-icon.svg" alt="Избранное">
+            <button class="element__like-icon element__like-icon_disabled" type="button"></button>
           </div>
         </li>
         <li class="element">
           <img class="element__image" src="images/dombay-2.jpg" alt="Домбай 2">
           <div class="element__title">
             <p class="element__text">Домбай</p>
-            <img class="element__fav-icon" src="images/fav-icon.svg" alt="Избранное">
+            <button class="element__like-icon element__like-icon_disabled" type="button"></button>
           </div>
         </li>
         <li class="element">
           <img class="element__image" src="images/karachaevo.jpg" alt="Карачаево-Черкесия">
           <div class="element__title">
             <p class="element__text">Карачаево-Черкесия</p>
-            <img class="element__fav-icon" src="images/fav-icon.svg" alt="Избранное">
+            <button class="element__like-icon element__like-icon_disabled" type="button"></button>
           </div>
         </li>
       </ul>
@@ -90,6 +73,17 @@
   <footer class="footer">
     <p class="footer__text">&copy; 2020 Mesto Russia</p>
   </footer>
+  <div class="popup">
+    <form class="popup__container">
+      <button class="popup__close-button" type="button"></button>
+      <h2 class="popup__title">Редактировать профиль</h2>
+      <input type="text" class="popup__item" id="name" name="name"
+             placeholder="Имя" required>
+      <input type="text" class="popup__item" id="description" name="description"
+             placeholder="О себе" required>
+      <button type="submit"  class="popup__button">Сохранить</button>
+    </form>
+  </div>
 </div>
 <script src="scripts/index.js"></script>
 </body>

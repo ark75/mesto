@@ -1,16 +1,10 @@
-let name = 'Жак-Ив Кусто';
-let description = 'Исследователь океана';
-
-let profileTitle = document.querySelector('.profile__title');
-let profileSubTitle = document.querySelector('.profile__subtitle');
-
-profileTitle.textContent = name;
-profileSubTitle.textContent = description;
-
-
-let popup = document.querySelector('.popup');
-let popupCloseButton = document.querySelector('.popup__close-button');
-let profileEditButton = document.querySelector('.profile__edit-button');
+const profileTitle = document.querySelector('.profile__title');
+const profileSubTitle = document.querySelector('.profile__subtitle');
+const popup = document.querySelector('.popup');
+const popupCloseButton = document.querySelector('.popup__close-button');
+const profileEditButton = document.querySelector('.profile__edit-button');
+const inputItemName = document.querySelector('#name');
+const inputItemDescription = document.querySelector('#description');
 
 function popupClose() {
   popup.classList.remove('popup_opened');
@@ -18,30 +12,17 @@ function popupClose() {
 
 function popupOpen() {
   popup.classList.add('popup_opened');
+  inputItemName.value = profileTitle.textContent;
+  inputItemDescription.value = profileSubTitle.textContent;
+}
+
+function formSubmitHandler(evt) {
+  evt.preventDefault();
+  profileTitle.textContent = inputItemName.value;
+  profileSubTitle.textContent = inputItemDescription.value;
+  popupClose();
 }
 
 profileEditButton.addEventListener('click', popupOpen);
 popupCloseButton.addEventListener('click', popupClose);
-
-let inputItemName = document.querySelector('#name');
-let inputItemDescription = document.querySelector('#description');
-
-
-inputItemName.value = name;
-inputItemDescription.value = description;
-
-function formSubmitHandler(evt) {
-  evt.preventDefault();
-
-  name = inputItemName.value;
-  description = inputItemDescription.value;
-
-  profileTitle.textContent = name;
-  profileSubTitle.textContent = description;
-
-  popupClose();
-}
-
-let submitButton = document.querySelector('.popup')
-console.log(submitButton);
-submitButton.addEventListener('submit', formSubmitHandler);
+popup.addEventListener('submit', formSubmitHandler);

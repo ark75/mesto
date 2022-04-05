@@ -1,0 +1,21 @@
+.element__like-icon {
+  margin-right: 20px;
+  margin-left: auto;
+  width: 22px;
+  height: 19px;
+  background-image: url("../../../images/like-icon.svg");
+  background-repeat: no-repeat;
+  background-color: transparent;
+  background-position: right;
+  background-size: cover;
+  border: none;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.element__like-icon:hover {
+  opacity: 0.5;
+}
+
+
+
