@@ -1,15 +1,18 @@
 .element__like-icon {
-  margin-right: 20px;
-  margin-left: auto;
-  width: 22px;
-  height: 19px;
+  margin-right: 0;
+  margin-left: 0;
+  padding: 0;
+  justify-self: right;
+  width: 30px;
+  height: 20px;
+  min-width: 22px;
   background-image: url("../../../images/like-icon.svg");
   background-repeat: no-repeat;
   background-color: transparent;
   background-position: center;
-  background-size: cover;
+  background-size: 22px 19px;
   border: none;
-  box-sizing: border-box;
+  box-sizing: content-box;
   cursor: pointer;
 }
 

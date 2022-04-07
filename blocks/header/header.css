@@ -1,10 +1,8 @@
 .header {
   max-width: 68.75%;
   margin: 0 auto;
-  border: 1px none rgba(84, 84, 84, 0.7);
-  border-bottom-style: solid;
+  border-bottom: 1px solid rgba(84, 84, 84, 0.7);
 }
-
 
 @media screen  and (max-width: 949px) {
   .header {

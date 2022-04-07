@@ -1,4 +1,6 @@
 .profile__info {
   display: flex;
-  flex-flow: row;
+  margin: 0;
+  padding: 0;
+  align-items: center;
 }

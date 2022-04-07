@@ -11,8 +11,8 @@
   z-index: 100;
   cursor: pointer;
   padding: 0;
-  margin-left: 438px;
-  margin-top: -40px;
+  top:-40px;
+  left:calc( 50% + 223px);
 }
 
 .popup__close-button:hover {
@@ -23,7 +23,7 @@
   .popup__close-button {
     width: 20px;
     height: 20px;
-    margin-left: 262px;
-    margin-top: -36px;
+    top:-36px;
+    left:calc( 50% + 121px);
   }
 }
