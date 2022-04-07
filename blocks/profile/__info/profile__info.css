@@ -4,3 +4,9 @@
   padding: 0;
   align-items: center;
 }
+
+@media screen  and (max-width: 949px) {
+  .profile__info {
+    margin-top: 14px;
+  }
+}

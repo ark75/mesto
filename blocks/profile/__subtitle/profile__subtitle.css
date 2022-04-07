@@ -15,9 +15,10 @@
 @media screen  and (max-width: 949px) {
   .profile__subtitle {
     text-align: center;
-    margin-top: 14px;
+    margin-top: 7px;
     max-width: 282px;
     font-size: 14px;
     line-height: 17px;
-  }
+    margin-left: 2px;
+    }
 }
