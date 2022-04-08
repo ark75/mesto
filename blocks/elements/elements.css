@@ -2,12 +2,10 @@
   max-width: 880px;
   margin: 0 auto;
   display: grid;
-
   grid-template-columns:repeat(auto-fill, minmax(min(282px, 100%), 1fr));
   grid-template-rows: auto;
   gap: 17px;
   padding: 0;
-
 }
 
 @media screen  and (max-width: 948px) {

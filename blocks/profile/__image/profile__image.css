@@ -2,7 +2,6 @@
   width: 120px;
   height: 120px;
   background-image: url("../../../images/profile-image.jpg");
-
   border-radius: 50%;
   margin: 36px 30px 57px 0;
   box-sizing: border-box;
@@ -10,9 +9,6 @@
 
 @media screen  and (max-width: 949px) {
   .profile__image {
-    margin-bottom: 14px;
-    margin-left: 100px;
-    margin-top: 39px;
-    margin-right: auto;
+    margin: 39px 31.25% 14px;
   }
 }

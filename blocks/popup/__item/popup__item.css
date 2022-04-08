@@ -16,14 +16,14 @@
   overflow: hidden;
   margin-top: 0;
   margin-bottom: 21px;
-  /*padding: 9px 5px 13px;*/;
-padding-top: 9px;
-  padding-bottom: 9px ;
-
+  padding-top: 9px;
+  padding-bottom: 9px;
 }
 
-@media screen  and (max-width: 948px) {
+@media screen  and (max-width: 949px) {
   .popup__item {
-    margin: 0 0 9px 22px;
+    padding-top: 9px;
+    padding-bottom: 9px;
+    margin: 0 0 22px;
   }
 }

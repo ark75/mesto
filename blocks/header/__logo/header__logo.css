@@ -5,7 +5,7 @@
   margin-bottom: 35px;
 }
 
-@media screen  and (max-width: 486px) {
+@media screen  and (max-width: 949px) {
   .header__logo {
     width: 104px;
     margin-bottom: 29px;
@@ -13,4 +13,6 @@
     margin-left: 27px;
   }
 }
+
+
 
