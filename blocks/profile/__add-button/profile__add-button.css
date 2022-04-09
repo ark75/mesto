@@ -23,5 +23,6 @@
   .profile__add-button {
     margin: 31px 0 36px 0;
     width: 88.125%;
+    background-size: 16px 16px;
   }
 }
