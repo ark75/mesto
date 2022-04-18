@@ -4,5 +4,6 @@
   overflow: hidden;
   min-width: 282px;
   box-sizing: border-box;
+  position: relative;
 }
 
