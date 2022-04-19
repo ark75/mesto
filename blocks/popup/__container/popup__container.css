@@ -9,6 +9,9 @@
   box-sizing: border-box;
   margin-top: 0;
   padding: 34px 36px 37px 36px;
+display: flex;
+  flex-flow: column;
+
 }
 
 @media screen  and (max-width: 949px) {

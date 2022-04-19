@@ -25,20 +25,20 @@ const initialElements = [
   }
 ];
 const popupProfile = document.querySelector('.popup_type_profile-edit');
-const profileElement = popupProfile.querySelector('.popup__form');
+const profileElement = popupProfile.querySelector('.popup__form_profile');
 const inputName = profileElement.querySelector('.popup__item_input-name');
 const inputJob = profileElement.querySelector('.popup__item_input-job');
 const closeButtonProfile = popupProfile.querySelector('.popup__close-button_profile');
 
 const profileName = document.querySelector('.profile__title');
-const profileDescription = document.querySelector('.profile__description');
-const profileEditButton = document.querySelector('.profile__button-edit');
+const profileJob = document.querySelector('.profile__job');
+const profileEditButton = document.querySelector('.profile__edit-button');
 
 const popupNewElement = document.querySelector('.popup_type_new-element');
 const imageElement = popupNewElement.querySelector('.popup__form');
 const inputImageTitle = imageElement.querySelector('.popup__item_input-image-title');
 const inputImageLink = imageElement.querySelector('.popup__item_input-image-link');
-const popupButton = document.querySelector('.popup__button');
+const addButton = document.querySelector('.profile__add-button');
 const popupCloseButtonElement = popupNewElement.querySelector('.popup__close-button_new-element');
 
 const popupImage = document.querySelector('.popup_type_image');
@@ -60,7 +60,7 @@ function closeForm(popupName) {
 
 function openProfile() {
   inputName.value = profileName.textContent;
-  inputJob.value = profileDescription.textContent;
+  inputJob.value = profileJob.textContent;
   openForm(popupProfile);
 }
 
@@ -80,7 +80,7 @@ function openImage(element) {
 function submitProfile (evt) {
   evt.preventDefault();
   profileName.textContent = inputName.value;
-  profileDescription.textContent = inputJob.value;
+  profileJob.textContent = inputJob.value;
   closeForm(popupProfile);
 }
 
@@ -122,8 +122,7 @@ profileEditButton.addEventListener('click', () => openProfile());
 closeButtonProfile.addEventListener('click', () => closeForm(popupProfile));
 profileElement.addEventListener('submit', submitProfile);
 
-popupButton.addEventListener('click', () => openElement());
+addButton.addEventListener('click', () => openElement());
 popupCloseButtonElement.addEventListener('click', () => closeForm(popupNewElement));
 imageElement.addEventListener('submit', submitNewElement);
-
 imageCloseButton.addEventListener('click', () => closeForm(popupImage));

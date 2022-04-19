@@ -1,4 +1,4 @@
-.profile__subtitle {
+.profile__job {
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
@@ -13,7 +13,7 @@
 }
 
 @media screen  and (max-width: 949px) {
-  .profile__subtitle {
+  .profile__job {
     text-align: center;
     margin-top: 7px;
     max-width: 282px;
