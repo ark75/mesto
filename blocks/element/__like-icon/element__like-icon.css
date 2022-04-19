@@ -14,7 +14,7 @@
   border: none;
   box-sizing: content-box;
   cursor: pointer;
-}
+ }
 
 .element__like-icon:hover {
   opacity: 0.5;

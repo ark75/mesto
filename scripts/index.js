@@ -44,7 +44,7 @@ const popupCloseButtonElement = popupNewElement.querySelector('.popup__close-but
 const popupImage = document.querySelector('.popup_type_image');
 const imageCloseButton = popupImage.querySelector('.popup__close-button_type-image');
 const imageTitle = popupImage.querySelector('.popup__image-title');
-const pictureInfo = popupImage.querySelector('.popup__image');
+const imageInfo = popupImage.querySelector('.popup__image');
 
 const initialElementList = document.querySelector('.elements');
 const elementTemplate = document.querySelector('.element__template').content;
@@ -71,25 +71,25 @@ function openElement() {
 }
 
 function openImage(element) {
-  pictureInfo.src = element.link;
-  pictureInfo.alt = element.name;
+  imageInfo.src = element.link;
+  imageInfo.alt = element.name;
   imageTitle.textContent = element.name;
   openForm(popupImage);
 }
 
-function submitProfile (evt) {
+function submitProfile(evt) {
   evt.preventDefault();
   profileName.textContent = inputName.value;
   profileJob.textContent = inputJob.value;
   closeForm(popupProfile);
 }
 
-function createNewElement(element) {
+function newCard(element) {
   const newElement = elementTemplate.cloneNode(true);
   const imageElement = newElement.querySelector('.element__image');
   const elementButtonDelete = newElement.querySelector('.element__button-delete');
   const elementButtonLike = newElement.querySelector('.element__like-icon');
-
+  console.log(elementButtonLike);
   imageElement.src = element.link;
   imageElement.alt = element.name;
   newElement.querySelector('.element__title').textContent = element.name;
@@ -104,19 +104,25 @@ function createNewElement(element) {
   return newElement;
 }
 
+document.querySelector('.element__like-icon').addEventListener('click', function (evt) {
+  evt.target.classList.toggle('element__like-icon_active');
+});
+
 function removeElement(evt) {
-  const element = evt.target.closest(".element__item");
+  const element = evt.target.closest(".element");
   element.remove();
 }
 
-function submitNewElement (evt) {
+function renderCard(evt) {
   evt.preventDefault();
   const newElement = {name: inputImageTitle.value, link: inputImageLink.value};
-  initialElementList.prepend(createNewElement(newElement));
+  initialElementList.prepend(newCard(newElement));
   closeForm(popupNewElement);
 }
 
-initialElements.forEach(element => initialElementList.prepend(createNewElement(element)));
+initialElements.forEach(element => {
+  initialElementList.prepend(newCard(element));
+});
 
 profileEditButton.addEventListener('click', () => openProfile());
 closeButtonProfile.addEventListener('click', () => closeForm(popupProfile));
@@ -124,5 +130,5 @@ profileElement.addEventListener('submit', submitProfile);
 
 addButton.addEventListener('click', () => openElement());
 popupCloseButtonElement.addEventListener('click', () => closeForm(popupNewElement));
-imageElement.addEventListener('submit', submitNewElement);
+imageElement.addEventListener('submit', renderCard);
 imageCloseButton.addEventListener('click', () => closeForm(popupImage));
