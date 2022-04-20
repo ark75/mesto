@@ -2,14 +2,14 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="pages/index.css">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <link href="pages/index.css" rel="stylesheet">
   <title>Место</title>
 </head>
 <body class="root">
 <div class="page">
   <header class="header">
-    <img class="header__logo" src="./images/logo.svg" alt="Лого МЕСТО">
+    <img alt="Лого МЕСТО" class="header__logo" src="./images/logo.svg">
   </header>
   <main>
     <section class="profile">
@@ -17,23 +17,14 @@
       <div class="profile__content">
         <div class="profile__info">
           <h1 class="profile__title">Жак-Ив Кусто</h1>
-          <button class="profile__edit-button" type="button" aria-label="Редактировать профиль"></button>
+          <button aria-label="Редактировать профиль" class="profile__edit-button" type="button"></button>
         </div>
         <p class="profile__job">Исследователь океана</p>
       </div>
-      <button class="profile__add-button" type="button" aria-label="Добавить место"></button>
+      <button aria-label="Добавить место" class="profile__add-button" type="button"></button>
     </section>
     <section class="photo-gallery">
-      <ul class="elements">
-        <li class="element">
-          <img class="element__image" src="#" alt="">
-          <button type="button" class="element__button-delete"></button>
-          <div class="element__title">
-            <h2 class="element__text"></h2>
-            <button type="button" class="element__like-icon"></button>
-          </div>
-        </li>
-      </ul>
+      <ul class="elements"></ul>
     </section>
   </main>
   <footer class="footer">
@@ -41,45 +32,46 @@
   </footer>
   <div class="popup popup_type_profile-edit">
     <div class="popup__container popup__container_profile-edit">
-      <button class="popup__close-button popup__close-button_profile" type="button" aria-label="Закрыть"></button>
+      <button aria-label="Закрыть" class="popup__close-button popup__close-button_profile" type="button"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
       <form class="popup__form popup__form_profile" name="popup__form_profile">
-        <input type="text" class="popup__item popup__item_input-name" name="name"
-               placeholder="Имя" required>
-        <input type="text" class="popup__item popup__item_input-job" name="job"
-               placeholder="О себе" required>
-        <button type="submit" class="popup__button">Сохранить</button>
+        <input class="popup__item popup__item_input-name" name="name" placeholder="Имя"
+               required type="text">
+        <input class="popup__item popup__item_input-job" name="job" placeholder="О себе"
+               required type="text">
+        <button class="popup__button" type="submit">Сохранить</button>
       </form>
     </div>
   </div>
   <div class="popup popup_type_new-element">
     <div class="popup__container popup__container_type_new-element">
-      <button class="popup__close-button popup__close-button_new-element" type="button" aria-label="Закрыть"></button>
+      <button aria-label="Закрыть" class="popup__close-button popup__close-button_new-element" type="button"></button>
       <h2 class="popup__title">Новое место</h2>
       <form class="popup__form popup__form_new-element" name="popup__form_new-element">
-        <input type="text" class="popup__item popup__item_input-image-title" name="title"
-               placeholder="Название" required>
-        <input type="text" class="popup__item popup__item_input-image-link" name="description"
-               placeholder="Ссылка на изображение места" required>
-        <button type="submit" class="popup__button">Создать</button>
+        <input class="popup__item popup__item_input-image-title" name="title" placeholder="Название"
+               required type="text">
+        <input class="popup__item popup__item_input-image-link" name="description"
+               placeholder="Ссылка на изображение места"
+               required type="text">
+        <button class="popup__button" type="submit">Создать</button>
       </form>
     </div>
   </div>
   <div class="popup popup_type_image">
     <div class="popup__container popup__container_type-image">
-      <button class="popup__close-button popup__close-button_type-image" type="button" aria-label="Закрыть"></button>
-      <img class="popup__image" src="#" alt="">
+      <button aria-label="Закрыть" class="popup__close-button popup__close-button_type-image" type="button"></button>
+      <img alt="" class="popup__image" src="#">
       <h2 class="popup__image-title"></h2>
     </div>
   </div>
 </div>
-<template id="element" class="element__template">
+<template class="element__template" id="element">
   <li class="element">
-    <img class="element__image" src="#" alt="">
-    <button type="button" class="element__button-delete"></button>
+    <img alt="" class="element__image" src="#">
+    <button class="element__button-delete" type="button"></button>
     <div class="element__title">
       <h2 class="element__text"></h2>
-      <button type="button" class="element__like-icon"></button>
+      <button class="element__like-icon" type="button"></button>
     </div>
   </li>
 </template>

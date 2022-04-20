@@ -2,7 +2,8 @@
   max-width: 75vw;
   max-height: 75vh;
   background-color: transparent;
-  display: block;
+  box-sizing: content-box;
   margin: 0 auto;
-  }
+  padding: 0;
+}
 
