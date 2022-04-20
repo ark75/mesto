@@ -11,8 +11,8 @@
   z-index: 100;
   cursor: pointer;
   padding: 0;
-  top: -40px;
-  right: -40px;
+  top: -8px;
+  right: -8px;
 }
 
 .popup__close-button:hover {

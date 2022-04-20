@@ -77,7 +77,7 @@ function openImage(element) {
   openForm(popupImage);
 }
 
-function submitProfile (evt) {
+function submitProfile(evt) {
   evt.preventDefault();
   profileName.textContent = inputName.value;
   profileJob.textContent = inputJob.value;
@@ -89,7 +89,7 @@ function createNewElement(element) {
   const imageElement = newElement.querySelector('.element__image');
   const elementButtonDelete = newElement.querySelector('.element__button-delete');
   const elementButtonLike = newElement.querySelector('.element__like-icon');
-
+  console.log(elementButtonLike);
   imageElement.src = element.link;
   imageElement.alt = element.name;
   newElement.querySelector('.element__title').textContent = element.name;
@@ -109,7 +109,7 @@ function removeElement(evt) {
   element.remove();
 }
 
-function submitNewElement (evt) {
+function submitNewElement(evt) {
   evt.preventDefault();
   const newElement = {name: inputImageTitle.value, link: inputImageLink.value};
   initialElementList.prepend(createNewElement(newElement));

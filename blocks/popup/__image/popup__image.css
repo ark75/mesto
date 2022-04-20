@@ -3,6 +3,8 @@
   max-height: 75vh;
   justify-self: center;
   object-position: center;
+  padding:0;
   margin: 0 auto;
+  object-fit: contain;
 }
 
