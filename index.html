@@ -24,7 +24,16 @@
       <button class="profile__add-button" type="button" aria-label="Добавить место"></button>
     </section>
     <section class="photo-gallery">
-      <ul class="elements"></ul>
+      <ul class="elements">
+        <li class="element">
+          <img class="element__image" src="#" alt="">
+          <button type="button" class="element__button-delete"></button>
+          <div class="element__title">
+            <h2 class="element__text"></h2>
+            <button type="button" class="element__like-icon"></button>
+          </div>
+        </li>
+      </ul>
     </section>
   </main>
   <footer class="footer">
@@ -70,7 +79,7 @@
     <button type="button" class="element__button-delete"></button>
     <div class="element__title">
       <h2 class="element__text"></h2>
-      <button class="element__like-icon" type="button" aria-label="Добавить в избранное"></button>
+      <button type="button" class="element__like-icon"></button>
     </div>
   </li>
 </template>
