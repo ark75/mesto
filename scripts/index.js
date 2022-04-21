@@ -1,33 +1,7 @@
-const initialElements = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
 const popupProfile = document.querySelector('.popup_type_profile-edit');
-const profileElement = popupProfile.querySelector('.popup__form_profile');
-const inputName = profileElement.querySelector('.popup__item_input-name');
-const inputJob = profileElement.querySelector('.popup__item_input-job');
+const formProfileEdit = popupProfile.querySelector('.popup__form_profile');
+const inputName = formProfileEdit.querySelector('.popup__item_input-name');
+const inputJob = formProfileEdit.querySelector('.popup__item_input-job');
 const closeButtonProfile = popupProfile.querySelector('.popup__close-button_profile');
 
 const profileName = document.querySelector('.profile__title');
@@ -35,9 +9,9 @@ const profileJob = document.querySelector('.profile__job');
 const profileEditButton = document.querySelector('.profile__edit-button');
 
 const popupNewElement = document.querySelector('.popup_type_new-element');
-const imageElement = popupNewElement.querySelector('.popup__form');
-const inputImageTitle = imageElement.querySelector('.popup__item_input-image-title');
-const inputImageLink = imageElement.querySelector('.popup__item_input-image-link');
+const formAddCard = popupNewElement.querySelector('.popup__form');
+const inputImageTitle = formAddCard.querySelector('.popup__item_input-image-title');
+const inputImageLink = formAddCard.querySelector('.popup__item_input-image-link');
 const addButton = document.querySelector('.profile__add-button');
 const popupCloseButtonElement = popupNewElement.querySelector('.popup__close-button_new-element');
 
@@ -50,7 +24,7 @@ const initialElementList = document.querySelector('.elements');
 const elementTemplate = document.querySelector('.element__template').content;
 
 
-function openForm(popupName) {
+function openPopup(popupName) {
   popupName.classList.add('popup_opened');
 }
 
@@ -61,21 +35,19 @@ function closeForm(popupName) {
 function openProfile() {
   inputName.value = profileName.textContent;
   inputJob.value = profileJob.textContent;
-  openForm(popupProfile);
+  openPopup(popupProfile);
 }
 
-function openElement() {
-  inputImageTitle.value = '';
-  inputImageLink.value = '';
-  openForm(popupNewElement);
+function openFormAddCard() {
+  formAddCard.reset();
+  openPopup(popupNewElement);
 }
 
 function openImage(element) {
   pictureInfo.src = element.link;
   pictureInfo.alt = element.name;
   imageTitle.textContent = element.name;
-  openForm(popupImage);
-
+  openPopup(popupImage);
 }
 
 function submitProfile(evt) {
@@ -83,6 +55,10 @@ function submitProfile(evt) {
   profileName.textContent = inputName.value;
   profileJob.textContent = inputJob.value;
   closeForm(popupProfile);
+}
+
+function toggleLikeButton(evt) {
+  evt.target.classList.toggle('element__like-icon_active');
 }
 
 function createNewElement(element) {
@@ -94,14 +70,9 @@ function createNewElement(element) {
   imageElement.src = element.link;
   imageElement.alt = element.name;
   newElement.querySelector('.element__text').textContent = element.name;
-
   elementButtonDelete.addEventListener('click', removeElement);
-  elementButtonLike.addEventListener('click', function (evt) {
-    evt.target.classList.toggle('element__like-icon_active');
-  });
-
+  elementButtonLike.addEventListener('click', toggleLikeButton);
   imageElement.addEventListener('click', () => openImage(element));
-
   return newElement;
 }
 
@@ -120,8 +91,8 @@ function submitNewElement(evt) {
 initialElements.forEach(element => initialElementList.prepend(createNewElement(element)));
 profileEditButton.addEventListener('click', () => openProfile());
 closeButtonProfile.addEventListener('click', () => closeForm(popupProfile));
-profileElement.addEventListener('submit', submitProfile);
-addButton.addEventListener('click', () => openElement());
+formProfileEdit.addEventListener('submit', submitProfile);
+addButton.addEventListener('click', () => openFormAddCard());
 popupCloseButtonElement.addEventListener('click', () => closeForm(popupNewElement));
-imageElement.addEventListener('submit', submitNewElement);
+formAddCard.addEventListener('submit', submitNewElement);
 imageCloseButton.addEventListener('click', () => closeForm(popupImage));
