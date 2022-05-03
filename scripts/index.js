@@ -4,6 +4,9 @@ const inputName = formProfileEdit.querySelector('.popup__item_input-name');
 const inputJob = formProfileEdit.querySelector('.popup__item_input-job');
 const closeButtonProfile = popupProfile.querySelector('.popup__close-button_profile');
 
+const popupList = document.querySelectorAll('.popup');
+const formList = document.querySelectorAll('.popup__form');
+
 const profileName = document.querySelector('.profile__title');
 const profileJob = document.querySelector('.profile__job');
 const profileEditButton = document.querySelector('.profile__edit-button');
@@ -12,6 +15,8 @@ const popupNewElement = document.querySelector('.popup_type_new-element');
 const formAddCard = popupNewElement.querySelector('.popup__form');
 const inputImageTitle = formAddCard.querySelector('.popup__item_input-image-title');
 const inputImageLink = formAddCard.querySelector('.popup__item_input-image-link');
+
+
 const addButton = document.querySelector('.profile__add-button');
 const popupCloseButtonElement = popupNewElement.querySelector('.popup__close-button_new-element');
 
@@ -23,23 +28,85 @@ const pictureInfo = popupImage.querySelector('.popup__image');
 const initialElementList = document.querySelector('.elements');
 const elementTemplate = document.querySelector('.element__template').content;
 
+function enableValidation(args) {
+  const form = document.querySelector(args.formSelector);
+  const inputs = form.querySelectorAll(args.inputSelector);
+
+  inputs.forEach(element => {
+    element.addEventListener('input', (event) => handleFormInput(event, form, args));
+  })
+
+  form.addEventListener('submit', (event) => handleFormSubmit(event, form));
+  toggleButton(form, args);
+}
+
+function toggleButton(form, config) {
+  const button = form.querySelector(config.buttonSelector);
+  button.disabled = !form.checkValidity();
+  button.classList.toggle('popup__button_disabled', !form.checkValidity());
+}
+
+function handleFormSubmit(event) {
+  event.preventDefault();
+}
+
+function handleFormInput(evt, form, config) {
+  const input = evt.target;
+  const errorNode = document.querySelector(`#${input.id}-error`);
+
+  if (input.validity.valid) {
+    errorNode.textContent = '';
+  } else {
+    errorNode.textContent = input.validationMessage;
+  }
+  toggleButton(form, config);
+}
+
 
 function openPopup(popupName) {
   popupName.classList.add('popup_opened');
+  removeErrorMessage();
+  document.addEventListener('keydown', (evt) => closePopupByEsc(evt, popupName));
 }
 
 function closeForm(popupName) {
   popupName.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closePopupByEsc);
+}
+
+function closePopupByEsc(evt, popupName) {
+  if (evt.key === 'Escape') {
+    closeForm(popupName);
+  }
+}
+
+function removeErrorMessage() {
+  const error = document.querySelectorAll('.popup__input-error');
+  error.forEach(error => {
+    error.textContent = '';
+  })
 }
 
 function openProfile() {
   inputName.value = profileName.textContent;
   inputJob.value = profileJob.textContent;
+
+  enableValidation({
+    formSelector: '.popup__form_profile',
+    inputSelector: '.popup__item',
+    buttonSelector: '.popup__button',
+  })
   openPopup(popupProfile);
 }
 
 function openFormAddCard() {
-  formAddCard.reset();
+  inputImageTitle.value = '';
+  inputImageLink.value = '';
+  enableValidation({
+    formSelector: '.popup__form_new-element',
+    inputSelector: '.popup__input',
+    buttonSelector: '.popup__button',
+  })
   openPopup(popupNewElement);
 }
 
@@ -76,6 +143,12 @@ function createNewElement(element) {
   return newElement;
 }
 
+function addByEnter(evt) {
+  if (evt.key === 'Enter') {
+    submitNewElement(evt);
+  }
+}
+
 function removeElement(evt) {
   const element = evt.target.closest(".element");
   element.remove();
@@ -95,4 +168,21 @@ formProfileEdit.addEventListener('submit', submitProfile);
 addButton.addEventListener('click', () => openFormAddCard());
 popupCloseButtonElement.addEventListener('click', () => closeForm(popupNewElement));
 formAddCard.addEventListener('submit', submitNewElement);
+inputImageTitle.addEventListener('keydown', addByEnter);
+inputImageLink.addEventListener('keydown', addByEnter);
 imageCloseButton.addEventListener('click', () => closeForm(popupImage));
+popupList.forEach(popup => popup.addEventListener('click', () => closeForm(popup)));
+formList.forEach(form => form.addEventListener('click', (event) => event.stopPropagation()));
+pictureInfo.addEventListener('click', (event) => event.stopPropagation());
+
+enableValidation({
+  formSelector: '.popup__form_profile',
+  inputSelector: '.popup__item',
+  buttonSelector: '.popup__button',
+})
+
+enableValidation({
+  formSelector: '.popup__form_new-element',
+  inputSelector: '.popup__item',
+  buttonSelector: '.popup__button',
+})
