@@ -35,11 +35,28 @@
       <button aria-label="Закрыть" class="popup__close-button popup__close-button_profile" type="button"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
       <form class="popup__form popup__form_profile" name="popup__form_profile">
-        <input class="popup__item popup__item_input-name" name="name" placeholder="Имя"
-               required type="text">
-        <input class="popup__item popup__item_input-job" name="job" placeholder="О себе"
-               required type="text">
-        <button class="popup__button" type="submit">Сохранить</button>
+        <fieldset class="popup__fieldset">
+          <input class="popup__item popup__item_input-name"
+                 name="name"
+                 placeholder="Имя"
+                 minlength="2"
+                 maxlength="40"
+                 id="name-input"
+                 required
+                 type="text"
+          >
+          <span class='popup__input-error' id='name-input-error'></span>
+          <input class="popup__item popup__item_input-job"
+                 name="job"
+                 placeholder="О себе"
+                 minlength="2"
+                 maxlength="200"
+                 id="job-input"
+                 required
+                 type="text">
+          <span class='popup__input-error' id='job-input-error'></span>
+          <button class="popup__button" type="submit">Сохранить</button>
+        </fieldset>
       </form>
     </div>
   </div>
@@ -48,12 +65,27 @@
       <button aria-label="Закрыть" class="popup__close-button popup__close-button_new-element" type="button"></button>
       <h2 class="popup__title">Новое место</h2>
       <form class="popup__form popup__form_new-element" name="popup__form_new-element">
-        <input class="popup__item popup__item_input-image-title" name="title" placeholder="Название"
-               required type="text">
-        <input class="popup__item popup__item_input-image-link" name="description"
-               placeholder="Ссылка на изображение места"
-               required type="text">
-        <button class="popup__button" type="submit">Создать</button>
+        <fieldset class="popup__fieldset">
+          <input class="popup__item popup__item_input-image-title"
+                 name="title"
+                 placeholder="Название"
+                 minlength="2"
+                 maxlength="30"
+                 id="title-input"
+                 required
+                 type="text"
+          >
+          <span class='popup__input-error' id='title-input-error'></span>
+          <input class="popup__item popup__item_input-image-link"
+                 name="description"
+                 placeholder="Ссылка на изображение места"
+                 id="link-input"
+                 required
+                 type="url"
+          >
+          <span class='popup__input-error' id='link-input-error'></span>
+          <button class="popup__button" type="submit">Создать</button>
+        </fieldset>
       </form>
     </div>
   </div>
