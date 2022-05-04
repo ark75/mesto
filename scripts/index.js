@@ -1,8 +1,8 @@
 const popupProfile = document.querySelector('.popup_type_profile-edit');
 const formProfileEdit = popupProfile.querySelector('.popup__form_profile');
-const inputName = formProfileEdit.querySelector('.popup__item_input-name');
-const inputJob = formProfileEdit.querySelector('.popup__item_input-job');
-const closeButtonProfile = popupProfile.querySelector('.popup__close-button_profile');
+const nameInput = formProfileEdit.querySelector('.popup__item_input-name');
+const jobInput = formProfileEdit.querySelector('.popup__item_input-job');
+const ButtonProfileCloseSign = popupProfile.querySelector('.popup__close-button_profile');
 
 const popupList = document.querySelectorAll('.popup');
 const formList = document.querySelectorAll('.popup__form');
@@ -12,12 +12,12 @@ const profileJob = document.querySelector('.profile__job');
 const profileEditButton = document.querySelector('.profile__edit-button');
 
 const popupNewElement = document.querySelector('.popup_type_new-element');
-const formAddCard = popupNewElement.querySelector('.popup__form');
-const inputImageTitle = formAddCard.querySelector('.popup__item_input-image-title');
-const inputImageLink = formAddCard.querySelector('.popup__item_input-image-link');
+const formAddCard = popupNewElement.querySelector('.popup__form_new-element');
+const imageTitleInput = formAddCard.querySelector('.popup__item_input-image-title');
+const imageLinkInput = formAddCard.querySelector('.popup__item_input-image-link');
 
 
-const addButton = document.querySelector('.profile__add-button');
+const buttonAdd = document.querySelector('.profile__add-button');
 const popupCloseButtonElement = popupNewElement.querySelector('.popup__close-button_new-element');
 
 const popupImage = document.querySelector('.popup_type_image');
@@ -27,40 +27,6 @@ const pictureInfo = popupImage.querySelector('.popup__image');
 
 const initialElementList = document.querySelector('.elements');
 const elementTemplate = document.querySelector('.element__template').content;
-
-function enableValidation(args) {
-  const form = document.querySelector(args.formSelector);
-  const inputs = form.querySelectorAll(args.inputSelector);
-
-  inputs.forEach(element => {
-    element.addEventListener('input', (event) => handleFormInput(event, form, args));
-  })
-
-  form.addEventListener('submit', (event) => handleFormSubmit(event, form));
-  toggleButton(form, args);
-}
-
-function toggleButton(form, config) {
-  const button = form.querySelector(config.buttonSelector);
-  button.disabled = !form.checkValidity();
-  button.classList.toggle('popup__button_disabled', !form.checkValidity());
-}
-
-function handleFormSubmit(event) {
-  event.preventDefault();
-}
-
-function handleFormInput(evt, form, config) {
-  const input = evt.target;
-  const errorNode = document.querySelector(`#${input.id}-error`);
-
-  if (input.validity.valid) {
-    errorNode.textContent = '';
-  } else {
-    errorNode.textContent = input.validationMessage;
-  }
-  toggleButton(form, config);
-}
 
 
 function openPopup(popupName) {
@@ -88,8 +54,8 @@ function removeErrorMessage() {
 }
 
 function openProfile() {
-  inputName.value = profileName.textContent;
-  inputJob.value = profileJob.textContent;
+  nameInput.value = profileName.textContent;
+  jobInput.value = profileJob.textContent;
 
   enableValidation({
     formSelector: '.popup__form_profile',
@@ -100,8 +66,8 @@ function openProfile() {
 }
 
 function openFormAddCard() {
-  inputImageTitle.value = '';
-  inputImageLink.value = '';
+  imageTitleInput.value = '';
+  imageLinkInput.value = '';
   enableValidation({
     formSelector: '.popup__form_new-element',
     inputSelector: '.popup__input',
@@ -119,8 +85,8 @@ function openImage(element) {
 
 function submitProfile(evt) {
   evt.preventDefault();
-  profileName.textContent = inputName.value;
-  profileJob.textContent = inputJob.value;
+  profileName.textContent = nameInput.value;
+  profileJob.textContent = jobInput.value;
   closeForm(popupProfile);
 }
 
@@ -144,8 +110,11 @@ function createNewElement(element) {
 }
 
 function addByEnter(evt) {
+
   if (evt.key === 'Enter') {
-    submitNewElement(evt);
+    if (imageTitleInput.value !== '' && imageLinkInput.value !== '') {
+      submitNewElement(evt);
+    }
   }
 }
 
@@ -156,23 +125,29 @@ function removeElement(evt) {
 
 function submitNewElement(evt) {
   evt.preventDefault();
-  const newElement = {name: inputImageTitle.value, link: inputImageLink.value};
+  const newElement = {name: imageTitleInput.value, link: imageLinkInput.value};
   initialElementList.prepend(createNewElement(newElement));
   closeForm(popupNewElement);
 }
 
 initialElements.forEach(element => initialElementList.prepend(createNewElement(element)));
 profileEditButton.addEventListener('click', () => openProfile());
-closeButtonProfile.addEventListener('click', () => closeForm(popupProfile));
+ButtonProfileCloseSign.addEventListener('click', () => closeForm(popupProfile));
 formProfileEdit.addEventListener('submit', submitProfile);
-addButton.addEventListener('click', () => openFormAddCard());
+buttonAdd.addEventListener('click', () => openFormAddCard());
 popupCloseButtonElement.addEventListener('click', () => closeForm(popupNewElement));
 formAddCard.addEventListener('submit', submitNewElement);
-inputImageTitle.addEventListener('keydown', addByEnter);
-inputImageLink.addEventListener('keydown', addByEnter);
+imageTitleInput.addEventListener('keydown', addByEnter);
+imageLinkInput.addEventListener('keydown', addByEnter);
 imageCloseButton.addEventListener('click', () => closeForm(popupImage));
-popupList.forEach(popup => popup.addEventListener('click', () => closeForm(popup)));
-formList.forEach(form => form.addEventListener('click', (event) => event.stopPropagation()));
+popupList.forEach(popup => popup.addEventListener('click', (evt) => {
+    if (!(evt.target.classList.contains('popup__container') || (evt.target.classList.contains('popup__title')))) {
+      closeForm(popup);
+    }
+  }
+));
+
+formList.forEach(form => form.addEventListener('click', (evt) => evt.stopPropagation()));
 pictureInfo.addEventListener('click', (event) => event.stopPropagation());
 
 enableValidation({

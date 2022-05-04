@@ -2,8 +2,5 @@
   border: none;
   margin: 0;
   padding: 0;
-  display: flex;
-  position: relative;
-  flex-flow: column;
-  width: 100%;
+
 }
