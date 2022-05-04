@@ -4,9 +4,6 @@ const nameInput = formProfileEdit.querySelector('.popup__item_input-name');
 const jobInput = formProfileEdit.querySelector('.popup__item_input-job');
 const ButtonProfileCloseSign = popupProfile.querySelector('.popup__close-button_profile');
 
-const popupList = document.querySelectorAll('.popup');
-const formList = document.querySelectorAll('.popup__form');
-
 const profileName = document.querySelector('.profile__title');
 const profileJob = document.querySelector('.profile__job');
 const profileEditButton = document.querySelector('.profile__edit-button');
@@ -31,48 +28,38 @@ const elementTemplate = document.querySelector('.element__template').content;
 
 function openPopup(popupName) {
   popupName.classList.add('popup_opened');
-  removeErrorMessage();
-  document.addEventListener('keydown', (evt) => closePopupByEsc(evt, popupName));
+  document.addEventListener('keydown', (evt) => closeByEsc(evt));
+  popupName.addEventListener('mousedown', (evt)=> closeByOverlay(evt));
 }
 
-function closeForm(popupName) {
-  popupName.classList.remove('popup_opened');
-  document.removeEventListener('keydown', closePopupByEsc);
-}
-
-function closePopupByEsc(evt, popupName) {
-  if (evt.key === 'Escape') {
-    closeForm(popupName);
+function closeByOverlay(evt) {
+  if (evt.target.classList.contains('popup')) {
+    const openedPopup = document.querySelector('.popup_opened');
+    closeForm(openedPopup);
   }
 }
+function closeForm(popupName) {
+  popupName.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closeByEsc);
+  popupName.removeEventListener('mousedown', closeByOverlay);
+}
 
-function removeErrorMessage() {
-  const error = document.querySelectorAll('.popup__input-error');
-  error.forEach(error => {
-    error.textContent = '';
-  })
+function closeByEsc(evt) {
+  if (evt.key === 'Escape') {
+    const openedPopup = document.querySelector('.popup_opened');
+    closeForm(openedPopup);
+  }
 }
 
 function openProfile() {
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
-
-  enableValidation({
-    formSelector: '.popup__form_profile',
-    inputSelector: '.popup__item',
-    buttonSelector: '.popup__button',
-  })
   openPopup(popupProfile);
 }
 
 function openFormAddCard() {
   imageTitleInput.value = '';
   imageLinkInput.value = '';
-  enableValidation({
-    formSelector: '.popup__form_new-element',
-    inputSelector: '.popup__input',
-    buttonSelector: '.popup__button',
-  })
   openPopup(popupNewElement);
 }
 
@@ -109,15 +96,6 @@ function createNewElement(element) {
   return newElement;
 }
 
-function addByEnter(evt) {
-
-  if (evt.key === 'Enter') {
-    if (imageTitleInput.value !== '' && imageLinkInput.value !== '') {
-      submitNewElement(evt);
-    }
-  }
-}
-
 function removeElement(evt) {
   const element = evt.target.closest(".element");
   element.remove();
@@ -137,27 +115,14 @@ formProfileEdit.addEventListener('submit', submitProfile);
 buttonAdd.addEventListener('click', () => openFormAddCard());
 popupCloseButtonElement.addEventListener('click', () => closeForm(popupNewElement));
 formAddCard.addEventListener('submit', submitNewElement);
-imageTitleInput.addEventListener('keydown', addByEnter);
-imageLinkInput.addEventListener('keydown', addByEnter);
 imageCloseButton.addEventListener('click', () => closeForm(popupImage));
-popupList.forEach(popup => popup.addEventListener('click', (evt) => {
-    if (!(evt.target.classList.contains('popup__container') || (evt.target.classList.contains('popup__title')))) {
-      closeForm(popup);
-    }
-  }
-));
 
-formList.forEach(form => form.addEventListener('click', (evt) => evt.stopPropagation()));
-pictureInfo.addEventListener('click', (event) => event.stopPropagation());
 
 enableValidation({
-  formSelector: '.popup__form_profile',
+  formSelector: '.popup__form',
   inputSelector: '.popup__item',
-  buttonSelector: '.popup__button',
-})
-
-enableValidation({
-  formSelector: '.popup__form_new-element',
-  inputSelector: '.popup__item',
-  buttonSelector: '.popup__button',
-})
+  submitButtonSelector: '.popup__button',
+  inactiveButtonClass: 'popup__button_disabled',
+  inputErrorClass: 'popup__input-error',
+  errorClass: 'popup__error_visible'
+});
