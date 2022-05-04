@@ -28,16 +28,16 @@ const pictureInfo = popupImage.querySelector('.popup__image');
 const initialElementList = document.querySelector('.elements');
 const elementTemplate = document.querySelector('.element__template').content;
 
-function enableValidation(config) {
-  const form = document.querySelector(config.formSelector);
-  const inputs = form.querySelectorAll(config.inputSelector);
+function enableValidation(args) {
+  const form = document.querySelector(args.formSelector);
+  const inputs = form.querySelectorAll(args.inputSelector);
 
   inputs.forEach(element => {
-    element.addEventListener('input', (event) => handleFormInput(event, form, config));
+    element.addEventListener('input', (event) => handleFormInput(event, form, args));
   })
 
   form.addEventListener('submit', (event) => handleFormSubmit(event, form));
-  toggleButton(form, config);
+  toggleButton(form, args);
 }
 
 function toggleButton(form, config) {
