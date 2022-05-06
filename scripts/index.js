@@ -2,7 +2,7 @@ const popupProfile = document.querySelector('.popup_type_profile-edit');
 const formProfileEdit = popupProfile.querySelector('.popup__form_profile');
 const nameInput = formProfileEdit.querySelector('.popup__item_input-name');
 const jobInput = formProfileEdit.querySelector('.popup__item_input-job');
-const ButtonProfileCloseSign = popupProfile.querySelector('.popup__close-button_profile');
+const buttonProfileCloseSign = popupProfile.querySelector('.popup__close-button_profile');
 
 const profileName = document.querySelector('.profile__title');
 const profileJob = document.querySelector('.profile__job');
@@ -28,14 +28,13 @@ const elementTemplate = document.querySelector('.element__template').content;
 
 function openPopup(popupName) {
   popupName.classList.add('popup_opened');
-  document.addEventListener('keydown', (evt) => closeByEsc(evt));
-  popupName.addEventListener('mousedown', (evt)=> closeByOverlay(evt));
+  document.addEventListener('keydown', closeByEsc);
+  popupName.addEventListener('mousedown', closeByOverlay);
 }
 
 function closeByOverlay(evt) {
   if (evt.target.classList.contains('popup')) {
-    const openedPopup = document.querySelector('.popup_opened');
-    closeForm(openedPopup);
+    closeForm(evt.target);
   }
 }
 function closeForm(popupName) {
@@ -48,7 +47,7 @@ function closeByEsc(evt) {
   if (evt.key === 'Escape') {
     const openedPopup = document.querySelector('.popup_opened');
     closeForm(openedPopup);
-  }
+    }
 }
 
 function openProfile() {
@@ -58,8 +57,7 @@ function openProfile() {
 }
 
 function openFormAddCard() {
-  imageTitleInput.value = '';
-  imageLinkInput.value = '';
+  formAddCard.reset();
   openPopup(popupNewElement);
 }
 
@@ -110,7 +108,7 @@ function submitNewElement(evt) {
 
 initialElements.forEach(element => initialElementList.prepend(createNewElement(element)));
 profileEditButton.addEventListener('click', () => openProfile());
-ButtonProfileCloseSign.addEventListener('click', () => closeForm(popupProfile));
+buttonProfileCloseSign.addEventListener('click', () => closeForm(popupProfile));
 formProfileEdit.addEventListener('submit', submitProfile);
 buttonAdd.addEventListener('click', () => openFormAddCard());
 popupCloseButtonElement.addEventListener('click', () => closeForm(popupNewElement));
