@@ -24,7 +24,14 @@ const pictureInfo = popupImage.querySelector('.popup__image');
 
 const initialElementList = document.querySelector('.elements');
 const elementTemplate = document.querySelector('.element__template').content;
-
+const settings ={
+  formSelector: '.popup__form',
+  inputSelector: '.popup__item',
+  submitButtonSelector: '.popup__button',
+  inactiveButtonClass: 'popup__button_disabled',
+  inputErrorClass: 'popup__input-error',
+  errorClass: 'popup__error_visible'
+};
 
 function openPopup(popupName) {
   popupName.classList.add('popup_opened');
@@ -58,6 +65,7 @@ function openProfile() {
 
 function openFormAddCard() {
   formAddCard.reset();
+  setEventListeners(formAddCard, settings);
   openPopup(popupNewElement);
 }
 
@@ -115,12 +123,4 @@ popupCloseButtonElement.addEventListener('click', () => closeForm(popupNewElemen
 formAddCard.addEventListener('submit', submitNewElement);
 imageCloseButton.addEventListener('click', () => closeForm(popupImage));
 
-
-enableValidation({
-  formSelector: '.popup__form',
-  inputSelector: '.popup__item',
-  submitButtonSelector: '.popup__button',
-  inactiveButtonClass: 'popup__button_disabled',
-  inputErrorClass: 'popup__input-error',
-  errorClass: 'popup__error_visible'
-});
+enableValidation(settings);
