@@ -65,7 +65,9 @@ function openProfile() {
 
 function openFormAddCard() {
   formAddCard.reset();
-  setEventListeners(formAddCard, settings);
+  const inputListAddCard = Array.from(formAddCard.querySelectorAll(settings.inputSelector));
+  const buttonElementAddCard = formAddCard.querySelector(settings.submitButtonSelector);
+  toggleButtonState (inputListAddCard, buttonElementAddCard, settings)
   openPopup(popupNewElement);
 }
 
