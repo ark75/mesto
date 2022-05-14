@@ -1,3 +1,6 @@
+import { Card, initialElements } from './Card.js';
+import { FormValidator } from './FormValidator.js';
+
 const popupProfile = document.querySelector('.popup_type_profile-edit');
 const formProfileEdit = popupProfile.querySelector('.popup__form_profile');
 const nameInput = formProfileEdit.querySelector('.popup__item_input-name');
@@ -22,8 +25,9 @@ const imageCloseButton = popupImage.querySelector('.popup__close-button_type-ima
 const imageTitle = popupImage.querySelector('.popup__image-title');
 const pictureInfo = popupImage.querySelector('.popup__image');
 
-const initialElementList = document.querySelector('.elements');
-const elementTemplate = document.querySelector('.element__template').content;
+const cardTemplate = "#element";
+const elementsList = document.querySelector('.elements');
+
 const settings ={
   formSelector: '.popup__form',
   inputSelector: '.popup__item',
@@ -33,7 +37,21 @@ const settings ={
   errorClass: 'popup__error_visible'
 };
 
-function openPopup(popupName) {
+const profileValidation = new FormValidator(settings, formProfileEdit);
+const addCardValidation = new FormValidator(settings, formAddCard);
+profileValidation.enableValidation();
+addCardValidation.enableValidation();
+
+function render(elementsList, Card) {
+  elementsList.prepend(Card);
+}
+
+initialElements.forEach((item) => {
+  const newElement = new Card (item.name, item.link, cardTemplate).generateCard();
+  render(elementsList, newElement);
+});
+
+export function openPopup(popupName) {
   popupName.classList.add('popup_opened');
   document.addEventListener('keydown', closeByEsc);
   popupName.addEventListener('mousedown', closeByOverlay);
@@ -45,6 +63,7 @@ function closeByOverlay(evt) {
   }
 }
 function closeForm(popupName) {
+  profileValidation.resetValidation();
   popupName.classList.remove('popup_opened');
   document.removeEventListener('keydown', closeByEsc);
   popupName.removeEventListener('mousedown', closeByOverlay);
@@ -65,16 +84,14 @@ function openProfile() {
 
 function openFormAddCard() {
   formAddCard.reset();
-  const inputListAddCard = Array.from(formAddCard.querySelectorAll(settings.inputSelector));
-  const buttonElementAddCard = formAddCard.querySelector(settings.submitButtonSelector);
-  toggleButtonState (inputListAddCard, buttonElementAddCard, settings)
+  addCardValidation.disableSubmitButton();
   openPopup(popupNewElement);
 }
 
-function openImage(element) {
-  pictureInfo.src = element.link;
-  pictureInfo.alt = element.name;
-  imageTitle.textContent = element.name;
+export function openImage(link, name) {
+  pictureInfo.src = link;
+  pictureInfo.alt = name;
+  imageTitle.textContent = name;
   openPopup(popupImage);
 }
 
@@ -85,38 +102,13 @@ function submitProfile(evt) {
   closeForm(popupProfile);
 }
 
-function toggleLikeButton(evt) {
-  evt.target.classList.toggle('element__like-icon_active');
-}
-
-function createNewElement(element) {
-  const newElement = elementTemplate.cloneNode(true);
-  const imageElement = newElement.querySelector('.element__image');
-  const elementButtonDelete = newElement.querySelector('.element__button-delete');
-  const elementButtonLike = newElement.querySelector('.element__like-icon');
-
-  imageElement.src = element.link;
-  imageElement.alt = element.name;
-  newElement.querySelector('.element__text').textContent = element.name;
-  elementButtonDelete.addEventListener('click', removeElement);
-  elementButtonLike.addEventListener('click', toggleLikeButton);
-  imageElement.addEventListener('click', () => openImage(element));
-  return newElement;
-}
-
-function removeElement(evt) {
-  const element = evt.target.closest(".element");
-  element.remove();
-}
-
 function submitNewElement(evt) {
   evt.preventDefault();
-  const newElement = {name: imageTitleInput.value, link: imageLinkInput.value};
-  initialElementList.prepend(createNewElement(newElement));
+  const newElement = new Card(imageTitleInput.value, imageLinkInput.value, cardTemplate).generateCard();
+  render(elementsList, newElement);
   closeForm(popupNewElement);
 }
 
-initialElements.forEach(element => initialElementList.prepend(createNewElement(element)));
 profileEditButton.addEventListener('click', () => openProfile());
 buttonProfileCloseSign.addEventListener('click', () => closeForm(popupProfile));
 formProfileEdit.addEventListener('submit', submitProfile);
@@ -124,5 +116,3 @@ buttonAdd.addEventListener('click', () => openFormAddCard());
 popupCloseButtonElement.addEventListener('click', () => closeForm(popupNewElement));
 formAddCard.addEventListener('submit', submitNewElement);
 imageCloseButton.addEventListener('click', () => closeForm(popupImage));
-
-enableValidation(settings);
