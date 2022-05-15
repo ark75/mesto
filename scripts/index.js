@@ -1,11 +1,11 @@
-import { Card, initialElements } from './Card.js';
-import { FormValidator } from './FormValidator.js';
+import {Card} from './Card.js';
+import {FormValidator} from './FormValidator.js';
+import {initialElements} from "../utils/constants.js";
 
 const popupProfile = document.querySelector('.popup_type_profile-edit');
 const formProfileEdit = popupProfile.querySelector('.popup__form_profile');
 const nameInput = formProfileEdit.querySelector('.popup__item_input-name');
 const jobInput = formProfileEdit.querySelector('.popup__item_input-job');
-const buttonProfileCloseSign = popupProfile.querySelector('.popup__close-button_profile');
 
 const profileName = document.querySelector('.profile__title');
 const profileJob = document.querySelector('.profile__job');
@@ -15,10 +15,7 @@ const popupNewElement = document.querySelector('.popup_type_new-element');
 const formAddCard = popupNewElement.querySelector('.popup__form_new-element');
 const imageTitleInput = formAddCard.querySelector('.popup__item_input-image-title');
 const imageLinkInput = formAddCard.querySelector('.popup__item_input-image-link');
-
-
 const buttonAdd = document.querySelector('.profile__add-button');
-const popupCloseButtonElement = popupNewElement.querySelector('.popup__close-button_new-element');
 
 const popupImage = document.querySelector('.popup_type_image');
 const imageCloseButton = popupImage.querySelector('.popup__close-button_type-image');
@@ -28,7 +25,7 @@ const pictureInfo = popupImage.querySelector('.popup__image');
 const cardTemplate = "#element";
 const elementsList = document.querySelector('.elements');
 
-const settings ={
+const settings = {
   formSelector: '.popup__form',
   inputSelector: '.popup__item',
   submitButtonSelector: '.popup__button',
@@ -42,13 +39,15 @@ const addCardValidation = new FormValidator(settings, formAddCard);
 profileValidation.enableValidation();
 addCardValidation.enableValidation();
 
+function createCard(item) {
+  return new Card(item.name, item.link, cardTemplate, handleCardClick).generateCard()
+}
 function render(elementsList, Card) {
   elementsList.prepend(Card);
 }
 
 initialElements.forEach((item) => {
-  const newElement = new Card (item.name, item.link, cardTemplate).generateCard();
-  render(elementsList, newElement);
+  render(elementsList, createCard(item));
 });
 
 export function openPopup(popupName) {
@@ -62,8 +61,8 @@ function closeByOverlay(evt) {
     closeForm(evt.target);
   }
 }
+
 function closeForm(popupName) {
-  profileValidation.resetValidation();
   popupName.classList.remove('popup_opened');
   document.removeEventListener('keydown', closeByEsc);
   popupName.removeEventListener('mousedown', closeByOverlay);
@@ -73,10 +72,11 @@ function closeByEsc(evt) {
   if (evt.key === 'Escape') {
     const openedPopup = document.querySelector('.popup_opened');
     closeForm(openedPopup);
-    }
+  }
 }
 
 function openProfile() {
+  profileValidation.resetValidation();
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
   openPopup(popupProfile);
@@ -84,11 +84,11 @@ function openProfile() {
 
 function openFormAddCard() {
   formAddCard.reset();
-  addCardValidation.disableSubmitButton();
+  addCardValidation.resetValidation();
   openPopup(popupNewElement);
 }
 
-export function openImage(link, name) {
+ function handleCardClick(link, name) {
   pictureInfo.src = link;
   pictureInfo.alt = name;
   imageTitle.textContent = name;
@@ -104,15 +104,23 @@ function submitProfile(evt) {
 
 function submitNewElement(evt) {
   evt.preventDefault();
-  const newElement = new Card(imageTitleInput.value, imageLinkInput.value, cardTemplate).generateCard();
-  render(elementsList, newElement);
+  const item = {name: imageTitleInput.value, link: imageLinkInput.value  }
+  render(elementsList, createCard(item));
   closeForm(popupNewElement);
 }
 
+const popups = document.querySelectorAll('.popup')
+
+popups.forEach((popup) => {
+  popup.addEventListener('click', (evt) => {
+    if (evt.target.classList.contains('popup__close-button')) {
+      closeForm(popup)
+    }
+  })
+})
+
 profileEditButton.addEventListener('click', () => openProfile());
-buttonProfileCloseSign.addEventListener('click', () => closeForm(popupProfile));
 formProfileEdit.addEventListener('submit', submitProfile);
 buttonAdd.addEventListener('click', () => openFormAddCard());
-popupCloseButtonElement.addEventListener('click', () => closeForm(popupNewElement));
 formAddCard.addEventListener('submit', submitNewElement);
 imageCloseButton.addEventListener('click', () => closeForm(popupImage));

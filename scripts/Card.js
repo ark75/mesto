@@ -1,38 +1,10 @@
-import {openImage} from './index.js';
-
-export const initialElements = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
 
 export class Card {
-  constructor(imageName, imageLink, cardTemplate) {
+  constructor(imageName, imageLink, cardTemplate, handleCardClick) {
     this._imageName = imageName;
     this._imageLink = imageLink;
     this._cardTemplate = cardTemplate;
-    this._handleOpenImage = openImage;
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
@@ -43,7 +15,7 @@ export class Card {
 
   _setEventListeners() {
     this._elementImage.addEventListener('click', () => {
-      this._handleImageClick(this._imageName, this._imageLink);
+      this._handleCardClick(this._imageLink, this._imageName);
     });
     this._element.querySelector('.element__button-delete').addEventListener('click', () => {
       this._handleDeleteClick();
@@ -51,10 +23,6 @@ export class Card {
     this._elementLike.addEventListener('click', () => {
       this._handleLikeClick();
     });
-  }
-
-  _handleImageClick() {
-    this._handleOpenImage(this._imageLink, this._imageName);
   }
 
   _handleDeleteClick() {
