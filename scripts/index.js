@@ -18,7 +18,6 @@ const imageLinkInput = formAddCard.querySelector('.popup__item_input-image-link'
 const buttonAdd = document.querySelector('.profile__add-button');
 
 const popupImage = document.querySelector('.popup_type_image');
-const imageCloseButton = popupImage.querySelector('.popup__close-button_type-image');
 const imageTitle = popupImage.querySelector('.popup__image-title');
 const pictureInfo = popupImage.querySelector('.popup__image');
 
@@ -123,4 +122,3 @@ profileEditButton.addEventListener('click', () => openProfile());
 formProfileEdit.addEventListener('submit', submitProfile);
 buttonAdd.addEventListener('click', () => openFormAddCard());
 formAddCard.addEventListener('submit', submitNewElement);
-imageCloseButton.addEventListener('click', () => closeForm(popupImage));
