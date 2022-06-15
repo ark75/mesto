@@ -18,29 +18,57 @@ import {
   popupProfileSelector,
   popupAddCardSelector,
   popupProfileNameSelector,
-  popupProfileJobSelector,
+  popupProfileJobSelector, popupPictureSelectors,
 } from "../utils/constants.js";
 
+
+import Api from "../components/Api.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import Section from "../components/Section.js";
 import UserInfo from "../components/UserInfo";
+import PopupWithDelete from '../components/PopopWithDelete.js';
 
 const userInfo = new UserInfo({popupProfileNameSelector, popupProfileJobSelector});
+const bigImage = new PopupWithImage(popupImageSelector, popupPictureSelectors);
 
 const profileValidation = new FormValidator(settings, formProfileEdit);
 const addCardValidation = new FormValidator(settings, formAddCard);
 profileValidation.enableValidation();
 addCardValidation.enableValidation();
 
+const apiClass = new Api({
+  defaultUrl: 'https://mesto.nomoreparties.co/v1/cohort-43/',
+  headers: {authorization: '3ccf3527-e147-4624-b15b-88ef9a5a57ad', 'Content-Type': 'application/json'}
+});
+
+
 function createCard(item) {
   return new Card({name: item.name, link: item.link}, cardTemplate, handleCardClick).generateCard()
 }
+function like(idCard, likeCard) {
+  return apiClass.setLike(idCard)
+    .then((data) => {
+      likeCard(data.likes);
+    })
+    .catch((err) => {
+      console.log(`like ошибка: ${err}`)
+    })
+};
+
+function dislike(idCard, likeCard) {
+  return apiClass.setDislike(idCard)
+    .then((data) => {
+      likeCard(data.likes);
+    })
+    .catch((err) => {
+      console.log(`disLike ошибка: ${err}`)
+    })
+};
 
 const imageList = new Section({
-    items: initialElements,
-    renderer: (item) => {
-      const cardElement = createCard({name: item.name, link: item.link});
+        renderer: (items) => {
+      const cardElement = createCard({items});
       imageList.addItem(cardElement);
     }
   },

@@ -30,4 +30,19 @@ export default class PopupWithForm extends Popup {
     this._popupForm.reset();
     super.close();
   };
+
+  setInputValues(userData) { //передаю значения о пользователе в попап
+    this._inputList.forEach(input => {
+      console.log(input.name);
+      input.value = userData[input.name];
+    })
+  };
+
+  processLoading(loading) {
+    if (loading) {
+      this._submitButton.textContent = 'Сохранение...';
+    } else {
+      this._submitButton.textContent = 'Да';
+    };
+  }
 }
