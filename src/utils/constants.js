@@ -48,7 +48,12 @@ export const popupNewElement = document.querySelector('.popup_type_new-element')
 export const formAddCard = popupNewElement.querySelector('.popup__form_new-element');
 export const buttonAdd = document.querySelector('.profile__add-button');
 
-
+export const popupPictureSelectors = {
+  pictureImgSelector: ".popup__image",
+  pictureTextSelector: ".popup__image-title"
+}
+export const imageTitleSelector = '.popup__image-title';
+export const pictureInfoSelector ='.popup__image';
 
 export const elementSelector ='.elements';
 export const buttonDeleteSelector ='.element__button-delete';
@@ -63,3 +68,10 @@ export const popupProfileNameSelector ='.profile__title';
 export const popupProfileJobSelector ='.profile__job';
 export const cardTemplate = "#element";
 
+
+
+export const profileSelectors = {
+  name: '.profile__name',
+  work: '.profile__work',
+  avatar: '.profile__avatar'
+}

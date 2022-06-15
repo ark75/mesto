@@ -96,6 +96,29 @@
       <h2 class="popup__image-title"></h2>
     </div>
   </div>
+  <!-- POPUP del photo -->
+  <div class="popup popup_type_delete">   <!-- popup_opened-->
+    <div class="popup__container popup__container_type_input">
+      <button class="popup__close-button popup__close-button_type_delete" type="button" aria-label="Закрыть"></button>
+      <form class="popup__form" name="delete" novalidate>
+        <h3 class="popup__header popup__header_type_confirm">Вы уверены?</h3>
+        <button class="popup__save-button" type="submit" aria-label="Удалить">Да</button>
+      </form>
+    </div>
+  </div>
+  <!-- POPUP avatar -->
+  <div class="popup popup_type_avatar">
+    <div class="popup__container popup__container_type_input">
+      <button class="popup__close-button popup__close-button_type_avatar" type="button" aria-label="Закрыть"></button>
+      <form class="popup__form" name="avatar" novalidate>
+        <h3 class="popup__header popup__header_type_input">Обновить аватар</h3>
+        <div class="popup__block">
+          <input id="avatar" class="popup__input popup__input_type_avatar" type="url" name="avatar"  placeholder="Ссылка на аватар" required>
+          <span id="avatar-error" class="error"></span>
+        </div>
+        <button class="popup__save-button" type="submit" aria-label="Создать">Сохранить</button>
+      </form>
+    </div>
 </div>
 <template class="element__template" id="element">
   <li class="element">
