@@ -1,29 +1,11 @@
-export const initialElements = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
+//селекторы и классы
+export const cardTemplate = "#card-template";
+export const popupOpenedClass = "popup_opened";
+export const elementsSelector = ".elements";
+export const popupElementNameSelector = ".popup_type_profile-edit";
+export const popupElementPicSelector = ".popup_type_new-element";
+export const popupBigPictureSelector = ".popup_type_image";
+export const popupElementAvatarSelector = '.popup_type_avatar';
 export const settings = {
   formSelector: '.popup__form',
   inputSelector: '.popup__item',
@@ -32,46 +14,52 @@ export const settings = {
   inputErrorClass: 'popup__input-error',
   errorClass: 'popup__error_visible'
 };
-export const popupImage = document.querySelector('.popup_type_image');
-export const imageTitle = popupImage.querySelector('.popup__image-title');
-export const pictureInfo = popupImage.querySelector('.popup__image');
-export const popupProfile = document.querySelector('.popup_type_profile-edit');
-export const formProfileEdit = popupProfile.querySelector('.popup__form_profile');
-export const nameInput = formProfileEdit.querySelector('.popup__item_input-name');
-export const jobInput = formProfileEdit.querySelector('.popup__item_input-job');
 
-export const profileName = document.querySelector('.profile__title');
-export const profileJob = document.querySelector('.profile__job');
-export const profileEditButton = document.querySelector('.profile__edit-button');
+export const elements = document.querySelector(".elements"); //темплейт карточек
+export const popupSelectorAll = document.querySelectorAll(".popup"); //объявляю все попапы
 
-export const popupNewElement = document.querySelector('.popup_type_new-element');
-export const formAddCard = popupNewElement.querySelector('.popup__form_new-element');
-export const buttonAdd = document.querySelector('.profile__add-button');
+//обьявляю попап изменения иконки профиля (avatar)
+export const popupElementAvatar = document.querySelector(".popup_type_avatar");
+export const formSaveAvatar = popupElementAvatar.querySelector(".popup__form"); //фома изменения аватара (avatar)
+//
+export const popupInputSelectors = {
+  popupNameSelector: ".popup__item_input-name",
+  popupWorkSelector: ".popup__item_input-job",
+  popupAvatarSelector: ".popup__input_type_avatar",
+  popupPicNameSelector: ".popup__item_input-image-title",
+  popupPicUrlSelector: ".popup__item_input-image-link"
+}
+//обьявляю попап изменения имени/работы (name)
+export const popupElementEditBio = document.querySelector(".popup_type_profile-edit");
+//поля карточки изменения имени/работы (name)
+export const formSaveName = popupElementEditBio.querySelector(".popup__form"); //форма изменения имени/работы (name)
+//поля вывода имени/работы в форме (name)
 
+//обьявляю попап добавления карточки (pic)
+export const popupElementEditPic = document.querySelector(".popup_type_new-element");
+//поля формы добавления карточки (pic)
+export const formSavePic = popupElementEditPic.querySelector(".popup__form"); //фома добавления карточки (pic)
+
+//обьявляю попап фото
+export const popupBigPicture = document.querySelector(".popup_type_image");//
+//поля вывода просмотра фото
 export const popupPictureSelectors = {
   pictureImgSelector: ".popup__image",
   pictureTextSelector: ".popup__image-title"
 }
-export const imageTitleSelector = '.popup__image-title';
-export const pictureInfoSelector ='.popup__image';
+export const pictureImg = popupBigPicture.querySelector(".popup__image");//
+export const pictureText = popupBigPicture.querySelector(".popup__image-title");//
 
-export const elementSelector ='.elements';
-export const buttonDeleteSelector ='.element__button-delete';
-export const imageSelector ='.element__image';
-export const likeIconToggleToken ='element__like-icon_active';
-export const elementTextSelector ='.element__text';
-export const likeIconSelector ='element__like-icon';
-export const popupProfileSelector ='.popup_type_profile-edit';
-export const popupImageSelector ='.popup_type_image';
-export const popupAddCardSelector ='.popup_type_new-element';
-export const popupProfileNameSelector ='.profile__title';
-export const popupProfileJobSelector ='.profile__job';
-export const cardTemplate = "#element";
+//попап подтверждения удаления
+export const popupElementDelete = '.popup_type_delete';
 
-
+//кнопки открытия форм
+export const profileEdit = document.querySelector(".profile__edit-button");//
+export const photoAdd = document.querySelector(".profile__add-button");//
+export const profileAvatar = document.querySelector('.profile__button-avatar')
 
 export const profileSelectors = {
-  name: '.profile__name',
-  work: '.profile__work',
+  name: '.profile__title',
+  work: '.profile__job',
   avatar: '.profile__avatar'
 }

@@ -1,40 +1,51 @@
-import {settings} from "../utils/constants.js";
+//отвечает за открытие попапа для каждой формы
 import Popup from "./Popup.js";
-
 export default class PopupWithForm extends Popup {
-  constructor(popupElementSelector, handleSubmitForm) {
-    super(popupElementSelector);
-      this._handleSubmit = handleSubmitForm;
-      this._popupElement = document.querySelector(popupElementSelector);
-      this._popupForm = this._popupElement.querySelector(settings.formSelector);
-      this._inputList = this._popupElement.querySelectorAll(settings.inputSelector)
+  constructor ({renderer}, settings, popupElement, popupInputSelectors) {
+    super(popupElement),
+      this._renderer = renderer,
+
+      this._popupElement = document.querySelector(popupElement);
+
+      this._currentForm = this._popupElement.querySelector(settings.formSelector),
+      this._inputList = this._popupElement.querySelectorAll(settings.inputSelector),
+        this._submitButton = this._popupElement.querySelector(settings.submitButtonSelector),
+
+      this._getInputValues = this._getInputValues.bind(this)
+      this._popupName = document.querySelector(popupInputSelectors.popupNameSelector),
+      this._popupWork = document.querySelector(popupInputSelectors.popupWorkSelector),
+      this._popupAvatar = document.querySelector(popupInputSelectors.popupAvatarSelector),
+      this._submitButtonContent = this._submitButton.textContent
   };
 
-  _getInputValues = () => {
-    this._inputValues = {};
+  _getInputValues() { //собирает данные всех полей формы
+    this._formValues = {};
     this._inputList.forEach(input => {
-      this._inputValues[input.name] = input.value
+      this._formValues[input.name] = input.value
     })
-    return this._inputValues
+
+    return this._formValues
   };
 
   setEventListeners() {
+    //добавляю обработчик клика иконке закрытия
     super.setEventListeners();
-    this._popupForm.addEventListener("submit", (evt) => {
+    //добавляю обработчик сабмита формы
+    this._currentForm.addEventListener("submit", (evt) => {
       evt.preventDefault();
-      this._handleSubmit(this._getInputValues());
+      this._renderer(this._getInputValues());
     });
   };
 
   close() {
-    this._popupForm.reset();
     super.close();
+    this._currentForm.reset(); //сбрасываю форму
   };
 
   setInputValues(userData) { //передаю значения о пользователе в попап
+
     this._inputList.forEach(input => {
-      console.log(input.name);
-      input.value = userData[input.name];
+         input.value = userData[input.name];
     })
   };
 
@@ -42,7 +53,7 @@ export default class PopupWithForm extends Popup {
     if (loading) {
       this._submitButton.textContent = 'Сохранение...';
     } else {
-      this._submitButton.textContent = 'Да';
+      this._submitButton.textContent = this._submitButtonContent;
     };
   }
 }
