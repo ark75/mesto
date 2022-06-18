@@ -50,8 +50,8 @@ export default class Api {
       method: "POST",
       headers: this._headers,
       body: JSON.stringify({
-        name: cardItem.picName,
-        link: cardItem.picURL,
+        name: cardItem.name,
+        link: cardItem.link,
       })
     })
       .then(this._checkResOk)
@@ -71,7 +71,7 @@ export default class Api {
       headers: this._headers,
       body: JSON.stringify({
         name: userData.name,
-        about: userData.job,
+        about: userData.about,
       }),
     })
       .then(this._checkResOk)

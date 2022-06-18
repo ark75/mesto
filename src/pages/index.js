@@ -38,15 +38,15 @@ const apiClass = new Api({
   headers: {authorization: '3ccf3527-e147-4624-b15b-88ef9a5a57ad', 'Content-Type': 'application/json'}
 });
 
-fetch('https://mesto.nomoreparties.co/v1/cohort-43/cards', {
-  headers: {
-    authorization: '3ccf3527-e147-4624-b15b-88ef9a5a57ad'
-  }
-})
-  .then(res => res.json())
-  .then((result) => {
-    console.log(result);
-  });
+// fetch('https://mesto.nomoreparties.co/v1/cohort-43/cards', {
+//   headers: {
+//     authorization: '3ccf3527-e147-4624-b15b-88ef9a5a57ad'
+//   }
+// })
+//   .then(res => res.json())
+//   .then((result) => {
+//     console.log(result);
+//   });
 //функция(колбэк) добавления лайка на сервере
 function like(idCard, likeCard) {
   return apiClass.setLike(idCard)
@@ -208,6 +208,7 @@ function handleOpenPopupPic() {
 //функция (колбэк) закрытия
 function handleSavePic(data) {
   addNewCardClass.processLoading(true);
+  console.log(data);
   apiClass.createUserCard(data)
     .then((card) => {
       const cardElement = generateCard(card);  //  получаю собранный элемент карточки
