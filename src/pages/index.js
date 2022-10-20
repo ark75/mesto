@@ -34,8 +34,8 @@ const userInfoClass =  new UserInfo(profileSelectors);
 const bigImage = new PopupWithImage(popupBigPictureSelector, popupPictureSelectors);
 //запрос карточек с сервера
 const apiClass = new Api({
-  defaultUrl: 'https://mesto.nomoreparties.co/v1/cohort-43/',
-  headers: {authorization: '3ccf3527-e147-4624-b15b-88ef9a5a57ad', 'Content-Type': 'application/json'}
+  defaultUrl: 'https://mesto.nomoreparties.co/v1/cohort-52/',
+  headers: {authorization: 'b7327c08-f984-4f9d-8dde-6738800b3b30', 'Content-Type': 'application/json'}
 });
 
 // fetch('https://mesto.nomoreparties.co/v1/cohort-43/cards', {
